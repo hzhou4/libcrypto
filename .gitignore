@@ -8,3 +8,4 @@ build
 .idea/modules
 *.iml
 *.ipr
+local.properties
