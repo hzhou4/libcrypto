@@ -17,8 +17,7 @@ fun String.decodeHex(): ByteArray {
 }
 
 internal class JvmCryptoTest {
-    private val sodium = LazySodiumJava(SodiumJava());
-    private val crypto = Crypto(sodium)
+    private val crypto = Crypto()
 
     data class Ed25519(val sk: ByteArray, val pk: ByteArray, val msg: ByteArray, val sign: ByteArray) {
         override fun equals(other: Any?): Boolean {
