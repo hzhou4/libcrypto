@@ -1,6 +1,6 @@
 package tech.uwchrysalis.crypto
 
-actual class Crypto {
+actual object Crypto {
     actual fun sign(msg: ByteArray, sk: ByteArray): ByteArray {
         TODO("Not yet implemented")
     }

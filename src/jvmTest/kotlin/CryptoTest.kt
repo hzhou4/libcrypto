@@ -1,7 +1,5 @@
 package tech.uwchrysalis.crypto
 
-import com.goterl.lazysodium.LazySodiumJava
-import com.goterl.lazysodium.SodiumJava
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.params.ParameterizedTest
@@ -17,7 +15,6 @@ fun String.decodeHex(): ByteArray {
 }
 
 internal class JvmCryptoTest {
-    private val crypto = Crypto()
 
     data class Ed25519(val sk: ByteArray, val pk: ByteArray, val msg: ByteArray, val sign: ByteArray) {
         override fun equals(other: Any?): Boolean {
@@ -48,8 +45,8 @@ internal class JvmCryptoTest {
     @ParameterizedTest
     @MethodSource("ed25519SignInput")
     fun testSignatures(testData: Ed25519) {
-        val actualSignature = crypto.sign(testData.msg, testData.sk)
+        val actualSignature = Crypto.sign(testData.msg, testData.sk)
         assertArrayEquals(actualSignature, testData.sign)
-        assertTrue(crypto.verify(testData.msg, actualSignature, testData.pk))
+        assertTrue(Crypto.verify(testData.msg, actualSignature, testData.pk))
     }
 }
